@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     marginRight: 18,
     marginTop: 10,
     padding: 10,
+    color: "#bdbfbb",
 
     shadowColor: "#000",
     shadowOffset: {
@@ -137,6 +138,7 @@ const styles = StyleSheet.create({
     marginRight: 18,
     marginTop: 15,
     padding: 10,
+    color: "#bdbfbb",
 
     shadowColor: "#000",
     shadowOffset: {
