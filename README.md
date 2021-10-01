@@ -1,6 +1,6 @@
 
 <img id="logo" src="./src/assets/logo.jpg" alt="Logo Do Projeto" width="100" />
-</br></br>
+</br>
 <img align="center" alt="REACT-NATIVE" 
         src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 <p>PROJETO EM REACT-NATIVE</p>
@@ -19,7 +19,7 @@
 ```bash
 
     # Clone este repositório  
-    $ git clone <https://github.com/KayoSilva19/Tabela-Login-Animada.git>
+    $ git clone <https://github.com/KayoSilva19/appDeAnotacoes-React-Native>
 
     # Acesse a pasta do projeto no terminal/cmd
     $ cd appDeAnotacoes-React-Native
