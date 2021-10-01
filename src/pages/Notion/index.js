@@ -4,7 +4,6 @@ import { useNavigation, StackActions } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ModalDetalhes from '../ModalDetalhes';
 
-//Teste
 export default function Login() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(true);
