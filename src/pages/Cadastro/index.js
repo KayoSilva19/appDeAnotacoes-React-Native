@@ -1,49 +1,63 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, Image, TouchableOpacity, Button, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, Image, TouchableOpacity, Button, StatusBar, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 
 export default function Cadastro() {
     const navigation = useNavigation();
 
-    function volta() {
-        navigation.navigate("Login");
+    function IrNotion() {
+        navigation.navigate("Notion");
     }
 
-
     return (
-        <KeyboardAvoidingView style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "android" ? "height" : "padding"}
+            style={styles.container}
+
+        >
             <StatusBar backgroundColor="#bfff8c" />
             <View style={styles.styleContainer}>
                 <Image
                     style={styles.img}
                     source={require('../../assets/logo.jpg')}
                 />
-              <View style={styles.containerForm}>
-                  <View>
-                    <TextInput
-                        style={styles.inputEmail}
-                        placeholder="Digite seu melhor email"
-                        placeholderTextColor="#bdbfbb"
-                    />
+                <View style={styles.containerForm}>
+                    <View>
+                        <TextInput
+                            style={styles.inputEmail}
+                            placeholder="Digite seu melhor email"
+                            placeholderTextColor="#bdbfbb"
+                        />
 
-                    <TextInput
-                        style={styles.inputSenha}
-                        placeholder="Digite sua senha"
-                        secureTextEntry={true}
-                        placeholderTextColor="#bdbfbb"
-                    />
-                    <TouchableOpacity style={styles.btnCad}>
-                        <Text style={styles.txtCad}>Cadastrar</Text>
-                    </TouchableOpacity>
+                        <TextInput
+                            style={styles.inputSenha}
+                            placeholder="Digite sua senha"
+                            secureTextEntry={true}
+                            placeholderTextColor="#bdbfbb"
+                        />
+                        <TouchableOpacity
+                            style={styles.btnCad}
+                            onPress={IrNotion}
+                        >
+                            <Text style={styles.txtCad}>Cadastrar</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity 
-                        onPress={ () => navigation.goBack()}
-                    >
-                        <Text style={styles.txtVoltar}>Voltar</Text>
-                    </TouchableOpacity>
-                  </View>
-              </View>
+                        <TouchableOpacity
+                            onPress={() => navigation.goBack()}
+                            style={{ width: 25 }}
+                        >
+                            <FontAwesome
+                                style={styles.iconVoltar}
+                                name="chevron-left"
+                                size={25}
+                                color="#FFF"
+
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </KeyboardAvoidingView>
     );
@@ -54,15 +68,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#bfff8c",
-        
+
 
 
     },
     styleContainer: {
-        height: 900,
+        flex: 1,
         backgroundColor: "#FFF",
         borderTopEndRadius: 300,
-    }, 
+        justifyContent: 'center'
+    },
     containerForm: {
         alignItems: 'center',
         height: 300,
@@ -73,12 +88,12 @@ const styles = StyleSheet.create({
 
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 3,
+            width: 0,
+            height: 3,
         },
         shadowOpacity: 0.27,
         shadowRadius: 4.65,
-    
+
         elevation: 6,
     },
     inputEmail: {
@@ -95,12 +110,12 @@ const styles = StyleSheet.create({
 
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 1,
+            width: 0,
+            height: 1,
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-    
+
         elevation: 2,
     },
     inputSenha: {
@@ -117,26 +132,26 @@ const styles = StyleSheet.create({
 
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 1,
+            width: 0,
+            height: 1,
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-    
+
         elevation: 2,
 
     },
     img: {
         height: 100,
         width: 100,
-        marginTop: 75,
+        marginTop: 50,
         borderRadius: 50,
         alignSelf: 'center',
         borderWidth: 2,
         borderColor: "#bfff8c"
-    
-      },
-      btnCad:{
+
+    },
+    btnCad: {
         marginTop: 20,
         height: 50,
         width: 150,
@@ -145,16 +160,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
         borderRadius: 7,
 
-      },
-      txtCad: {
-          fontWeight: 'bold',
-          fontSize: 17,
-          color: "#bfff8c",
-          alignSelf: 'center'
-      },
-      txtVoltar: {
-          color: "#FFF",
-          alignSelf: 'flex-end'
-        
-      }
+
+    },
+    txtCad: {
+        fontWeight: 'bold',
+        fontSize: 17,
+        color: "#bfff8c",
+        alignSelf: 'center'
+    },
+    iconVoltar: {
+        color: "#FFF"
+    }
 });

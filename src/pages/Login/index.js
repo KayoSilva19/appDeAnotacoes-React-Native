@@ -8,8 +8,12 @@ import Header from '../Header';
 export default function Login() {
     const navigation = useNavigation();
 
-    function irCad(){
+    function IrCad(){
         navigation.navigate('Cadastro');
+    }
+
+    function IrNotion(){
+      navigation.navigate('Notion');
     }
     
   return (
@@ -39,14 +43,18 @@ export default function Login() {
             >
             </TextInput>
 
-            <TouchableOpacity style={styles.btnLogin}>
+            <TouchableOpacity 
+              style={styles.btnLogin}
+              onPress={IrNotion}
+            >
+
               <Text style={styles.textLogin}> Login </Text>
 
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.btnCad}
-              onPress={irCad}  
+              onPress={IrCad}  
             // onPress={() => navigation.navigate('Cadastro')}
             
             >

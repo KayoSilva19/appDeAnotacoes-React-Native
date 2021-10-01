@@ -6,7 +6,7 @@
 <p>PROJETO EM REACT-NATIVE</p>
 <hr>
 </br>
-    <p aling="center"> 🌱 O GreenNotion é um projeto que visa auxiliar as tarefas dos nossos usuários no dia a dia! </p>
+    <p aling="center"> 🌱 O GreenNotion é um projeto que visa auxiliar nas tarefas dos nossos usuários no dia a dia! </p>
     <ul>
         <li>Crie suas anotações e organize suas tarefas para que tudo saia como o planejado!</li>
     </ul>

@@ -36,8 +36,6 @@ export default function app() {
             headerShown: false
           }}
         />
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );

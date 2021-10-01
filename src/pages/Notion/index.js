@@ -1,165 +1,99 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-import Header from '../Header';
-
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, StatusBar, Modal, Button } from 'react-native';
+import { useNavigation, StackActions } from '@react-navigation/native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import ModalDetalhes from '../ModalDetalhes';
 
 export default function Login() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(true);
+
+  function Logout() {
+    navigation.dispatch(StackActions.popToTop());
+  }
+
+  function abrirModal() {
+    setModalVisible(true);
+  }
+
+  function sairModal() {
+    setModalVisible(false);
+  }
+
   return (
 
-    <KeyboardAvoidingView style={styles.container1}>
-      <View style={styles.styleContainer}>
-        <Header />
+    <KeyboardAvoidingView style={styles.container}>
+      <StatusBar backgroundColor="#bfff8c" />
+      <View style={styles.header}>
         <Image
           style={styles.img}
           source={require('../../assets/logo.jpg')}
         />
-        <View style={styles.containerLogin}>
-
-          <View style={styles.formLogin}>
-            <TextInput
-              style={styles.inputEmail}
-              placeholder='Digite seu email'
-            >
-            </TextInput>
-
-            <TextInput
-              secureTextEntry={true}
-              style={styles.inputSenha}
-              placeholder='Digite sua senha'
-            >
-            </TextInput>
-
-            <TouchableOpacity style={styles.btnLogin}>
-              <Text style={styles.textLogin}> Login </Text>
-
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.btnCad}
-              onPress={() => navigation.navigate('Cadastro')}
+          <TouchableOpacity
+          onPress={abrirModal}
+        >
+          <FontAwesome
+            style={styles.iconInfo}
+            name="info-circle"
+            size={20}
+            color="#FFF"
             
-            >
-              <Text style={styles.textCad}> Quero me cadastrar! </Text>
+          />
+        </TouchableOpacity>
 
-            </TouchableOpacity>
-          </View>
-        </View>
+
+        <TouchableOpacity
+          onPress={Logout}
+        >
+          <FontAwesome
+            style={styles.iconLogout}
+            name="sign-out"
+            size={25}
+            color="#FFF"
+          />
+        </TouchableOpacity>
+      </View>
+      <View>
+      
+
+        <Modal transparent={true} animationType="slide" visible={modalVisible}>
+          <ModalDetalhes fechar={sairModal} />
+        </Modal>
       </View>
     </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  container1: {
+  container: {
     flex: 1,
+    backgroundColor: "#f0f0f0"
+  },
+  header: {
+    height: 80,
+    backgroundColor: "#bfff8c",
+    borderBottomRightRadius: 300,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
 
   },
-  styleContainer: {
-    height: 850,
-    borderBottomEndRadius: 350,
-    backgroundColor: '#B6FF7C',
-
-  },
-  containerLogin: {
-    flex: 1,
-    alignItems: 'center'
-
-
-  },
-  formLogin: {
-    height: 300,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: "#FFF",
-    marginTop: 30,
-    borderRadius: 15,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
-    elevation: 6,
+  iconLogout: {
+    marginRight: 35,
+    marginTop: 15
 
   },
   img: {
     height: 100,
     width: 100,
     borderRadius: 50,
-    alignSelf: 'center'
-
-  },
-  inputEmail: {
-    height: 50,
-    width: 300,
-    borderRadius: 7,
-    borderWidth: 1,
-    borderColor: "#fafafa",
-    backgroundColor: "#FFF",
     marginLeft: 18,
-    marginRight: 18,
-    marginTop: 10,
-    padding: 10,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.20,
-    shadowRadius: 1.41,
-
-    elevation: 2,
+    marginTop: 15
 
   },
-  inputSenha: {
-    height: 50,
-    width: 300,
-    borderRadius: 7,
-    borderWidth: 1,
-    borderColor: "#fafafa",
-    backgroundColor: "#FFF",
-    marginLeft: 18,
-    marginRight: 18,
-    marginTop: 15,
-    padding: 10,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.20,
-    shadowRadius: 1.41,
-
-    elevation: 2,
-
-  },
-  btnLogin: {
-    height: 50,
-    width: 200,
-    marginTop: 25,
-    borderRadius: 7,
-    backgroundColor: "#B6FF7C",
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textLogin: {
-    color: "#FFF",
-    fontWeight: 'bold',
-    fontSize: 17
-  },
-  textCad: {
-    color: "#B6FF7C",
-    fontSize: 15,
-    marginTop: 10,
-    
+  iconInfo: {
+    marginTop: 55,
+    marginRight: 175 
   }
+
 
 });
