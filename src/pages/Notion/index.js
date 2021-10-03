@@ -6,7 +6,7 @@ import ModalDetalhes from '../ModalDetalhes';
 
 export default function Login() {
   const navigation = useNavigation();
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   function Logout() {
     navigation.dispatch(StackActions.popToTop());
