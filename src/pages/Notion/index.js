@@ -19,21 +19,7 @@ export default function Login() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [controlModal, setControlModal] = useState(false);
-  const [task, setTask] = useState([
-    { key: 1, task: "Teste 1" },
-    { key: 2, task: "Test 2" },
-    { key: 3, task: "Teste 3" },
-    { key: 4, task: "Teste 4" },
-    { key: 5, task: "Teste 5" },
-    { key: 6, task: "Test 6" },
-    { key: 7, task: "Teste 7" },
-    { key: 8, task: "Teste 8" },
-
-
-
-
-
-  ]);
+  const [task, setTask] = useState(['']);
 
   function Logout() {
     navigation.dispatch(StackActions.popToTop());
@@ -54,7 +40,7 @@ export default function Login() {
   function closeModal() {
     setControlModal(false);
   }
-
+  
   return (
 
     <SafeAreaView style={styles.container}>
