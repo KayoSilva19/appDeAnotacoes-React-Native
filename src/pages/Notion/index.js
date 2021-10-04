@@ -1,12 +1,39 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, StatusBar, Modal, Button } from 'react-native';
+import {
+  StyleSheet, Text, View,
+  Image, TextInput, KeyboardAvoidingView,
+  SafeAreaView, TouchableOpacity,
+  StatusBar, Modal, Button,
+  FlatList
+} from 'react-native';
 import { useNavigation, StackActions } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ModalDetalhes from '../ModalDetalhes';
+import TaskList from '../../components/TaskList';
+import * as Animatable from 'react-native-animatable';
+import ModalNotas from '../ModalNotas';
+
+const AnimatedBtn = Animatable.createAnimatableComponent(TouchableOpacity);
 
 export default function Login() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const [controlModal, setControlModal] = useState(false);
+  const [task, setTask] = useState([
+    { key: 1, task: "Teste 1" },
+    { key: 2, task: "Test 2" },
+    { key: 3, task: "Teste 3" },
+    { key: 4, task: "Teste 4" },
+    { key: 5, task: "Teste 5" },
+    { key: 6, task: "Test 6" },
+    { key: 7, task: "Teste 7" },
+    { key: 8, task: "Teste 8" },
+
+
+
+
+
+  ]);
 
   function Logout() {
     navigation.dispatch(StackActions.popToTop());
@@ -20,16 +47,25 @@ export default function Login() {
     setModalVisible(false);
   }
 
+  function openModal() {
+    setControlModal(true);
+  }
+
+  function closeModal() {
+    setControlModal(false);
+  }
+
   return (
 
-    <KeyboardAvoidingView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+
       <StatusBar backgroundColor="#bfff8c" />
       <View style={styles.header}>
         <Image
           style={styles.img}
           source={require('../../assets/logo.jpg')}
         />
-          <TouchableOpacity
+        <TouchableOpacity
           onPress={abrirModal}
         >
           <FontAwesome
@@ -37,7 +73,7 @@ export default function Login() {
             name="info-circle"
             size={20}
             color="#FFF"
-            
+
           />
         </TouchableOpacity>
 
@@ -54,13 +90,53 @@ export default function Login() {
         </TouchableOpacity>
       </View>
       <View>
-      
-
-        <Modal transparent={true} animationType="slide" visible={modalVisible}>
+        <Modal
+          transparent={true}
+          animationType="slide"
+          visible={modalVisible}
+        >
           <ModalDetalhes fechar={sairModal} />
         </Modal>
       </View>
-    </KeyboardAvoidingView>
+
+      <View style={styles.notas}>
+        <Text style={styles.textNotas}> Suas Notas </Text>
+      </View>
+
+      <FlatList
+        marginHorizontal={10}
+        showsHorizontalScrollIndicator={false}
+        data={task}
+        keyExtractor={(item) => String(item.key)}
+        renderItem={({ item }) => <TaskList data={item} />}
+      />
+
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={controlModal}
+      >
+        <ModalNotas close={closeModal} />
+      </Modal>
+
+      <AnimatedBtn
+        style={styles.fab}
+        useNativeDriver
+        animation="bounceInUp"
+        duration={1500}
+        onPress={openModal}
+      >
+        <FontAwesome
+          name="plus"
+          size={35}
+          color="#FFF"
+        />
+
+      </AnimatedBtn>
+
+
+    </SafeAreaView>
+
   );
 }
 
@@ -92,7 +168,38 @@ const styles = StyleSheet.create({
   },
   iconInfo: {
     marginTop: 55,
-    marginRight: 175 
+    marginRight: 175
+  },
+  notas: {
+    alignItems: 'center',
+    width: 200,
+    marginTop: 30,
+    alignSelf: 'center'
+  },
+  textNotas: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: "#59a31d",
+  },
+  fab: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    backgroundColor: "#bfff8c",
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 25,
+    bottom: 25,
+    elevation: 2,
+    zIndex: 9,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: {
+      width: 1,
+      height: 3,
+    }
+
   }
 
 

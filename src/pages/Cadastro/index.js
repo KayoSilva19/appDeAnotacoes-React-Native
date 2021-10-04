@@ -46,7 +46,7 @@ export default function Cadastro() {
 
                         <TouchableOpacity
                             onPress={() => navigation.goBack()}
-                            style={{ width: 25 }}
+                            style={{ width: 25, alignSelf: "flex-end" }}
                         >
                             <FontAwesome
                                 style={styles.iconVoltar}
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     iconVoltar: {
-        color: "#FFF"
+        color: "#FFF",
+        
     }
 });
